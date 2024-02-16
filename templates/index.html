@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center">
+        <h1>Menu Bar</h1>
+    </div>
+    <div class="container text-center">
+        <br>
+        <h2>Your available cash stands at: {{ money }}$</h2>
+        <br>
+        <h4>{{ message }}</h4>
+        <br>
+        <h5>Your stocks include:</h5>
+        <br>
+        <div class="container row">
+            {% for stock in stocks_list %}
+                <div class="col-md-4 text-bg-secondary p-3" style="border: 3px solid white;">
+                    <h5 class="form-label badge text-bg-dark">{{ stock }}:</h5>
+                    <br>
+                    <h5 class="form-label badge text-bg-dark">
+                        You bought {{ stocks_dict[stock]["amount"] }} stocks.
+                    </h5>
+                </div>
+            {% endfor %}
+        </div>
+
+        <br>
+        <br>
+        <form action="/impute-form" method="post" enctype="multipart/form-data" id="file-form">
+            <label for="buy">Would you like to purchase a new stock?</label>
+            <br>
+            <input type="text" name="buy" id="buy" placeholder="Enter stock symbol">
+            <br>
+            <br>
+            <button class="btn btn-dark bottom-submit" type="submit" tabindex="17">Yes I would</button>
+        </form>
+    </div>
+{% endblock %}

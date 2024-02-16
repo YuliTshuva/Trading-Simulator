@@ -1,0 +1,19 @@
+{
+  "money": 1562.329999999999,
+  "stocks_list": [
+    "TSLA",
+    "AMZN",
+    "NVDA"
+  ],
+  "stocks_dict": {
+    "TSLA": {
+      "amount": 1
+    },
+    "AMZN": {
+      "amount": 10
+    },
+    "NVDA": {
+      "amount": 9
+    }
+  }
+}

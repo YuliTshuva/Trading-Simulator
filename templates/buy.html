@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center">
+        <h1>Buy Stocks</h1>
+    </div>
+    <div class="container text-center">
+        <br>
+        <h2>Your available cash stands at: {{ money }}$</h2>
+        <br>
+        <br>
+        <form action="/impute-form2" method="post" enctype="multipart/form-data" id="file-form2">
+            <input name="price_hidden" value="{{ price }}" hidden>
+            <input name="website_hidden" value="{{ website }}" hidden>
+            <input name="stock_hidden" value="{{ stock }}" hidden>
+            <div class="container row">
+                <div class="col-md-4 text-bg-secondary p-3" style="border: 3px solid white;">
+                    <a class="form-label badge text-bg-dark" href="{{ website }}" style="font-size: 18px">click for website</a>
+                </div>
+                <div class="col-md-4 text-bg-secondary p-3" style="border: 3px solid white;">
+                    <a class="form-label badge text-bg-dark" style="font-size: 18px">stock price: {{ price }}</a>
+                </div>
+                <div class="col-md-4 text-bg-secondary p-3" style="border: 3px solid white;">
+                    <label for="amount" class="form-label badge text-bg-dark" style="font-size: 18px">
+                        How many stocks would you like to buy?</label>
+                    <br>
+                    <input id="amount" name="amount" type="number" value="1" placeholder="Enter amount">
+                </div>
+            </div>
+            <br>
+            <br>
+            <button class="btn btn-dark bottom-submit" type="submit" tabindex="17">Confirm</button>
+        </form>
+    </div>
+{% endblock %}
