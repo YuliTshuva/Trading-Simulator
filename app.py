@@ -36,7 +36,7 @@ def impute_form():
     website, price = get_stock_info(stock)
 
     if not price:
-        return render_template("index.html", money=data["money"], stock=stock,
+        return render_template("index.html", money=data["money"], message="Invalid stock symbol.",
                                stocks_list=data["stocks_list"], stocks_dict=data["stocks_dict"])
 
     return render_template("buy.html", money=data["money"], website=website, price=price, stock=stock)
