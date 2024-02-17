@@ -27,6 +27,32 @@ def get_stock_info(symbol):
         return None, None
 
 
+def get_total_stock_info(symbol):
+    try:
+        return yf.Ticker(symbol).info
+    except:
+        return None
+
+
+@app.route('/impute-form4', methods=['POST'])
+def impute_form4():
+    with open("static/data.json", "r") as file:
+        data = json.load(file)
+
+    company = request.form.get("symbol", "")
+    company_info = get_total_stock_info(company)
+
+    if not company_info:
+        return render_template("index.html", money=data["money"], message="Invalid company symbol.",
+                               stocks_list=data["stocks_list"], stocks_dict=data["stocks_dict"])
+
+    chars = request.form.getlist("chars")
+    company_chars = [company_info[char] for char in chars]
+
+    return render_template("stocks_info.html", company_chars=company_chars, chars=chars,
+                           show_details=True)
+
+
 @app.route('/impute-form', methods=['POST'])
 def impute_form():
     with open("static/data.json", "r") as file:
@@ -130,6 +156,11 @@ def impute_form3():
     return render_template("index.html", money=data["money"],
                            message=f"Successful Transaction - You sold {amount} stocks of {stock} for {total_income}$.",
                            stocks_list=data["stocks_list"], stocks_dict=data["stocks_dict"])
+
+
+@app.route("/Info", methods=["GET"])
+def info():
+    return render_template("stocks_info.html", show_details=False)
 
 
 if __name__ == "__main__":

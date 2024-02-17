@@ -1,7 +1,1 @@
-{
-  "money": 10000,
-  "stocks_list": [
-  ],
-  "stocks_dict": {
-  }
-}
+{"money": 9491.47, "stocks_list": ["AMZN"], "stocks_dict": {"AMZN": {"amount": 3}}}

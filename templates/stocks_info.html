@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <script>
+        // This is for the multiple choise of races
+        $('select').selectpicker();
+
+    </script>
+
+    <div class="container text-center">
+        <h1>Stocks Info</h1>
+    </div>
+    <div class="container text-center">
+        <br>
+        <h2>Which stock would you like to get info about?</h2>
+        <br>
+        <br>
+        <form action="/impute-form4" method="post" enctype="multipart/form-data" id="file-form4">
+            <div class="row justify-content-evenly">
+                <div class="col-md-4 text-bg-secondary p-3" style="border: 3px solid white;">
+                    <label for="symbol" class="form-label badge text-bg-dark" style="font-size: 18px">Enter stock
+                        symbol:</label>
+                    <input type="text" class="form-control" value="" placeholder="Enter Symbol" name="symbol"
+                           id="symbol">
+                </div>
+                <div class="col-md-4 text-bg-secondary p-3" style="border: 3px solid white;">
+                    <label for="chars" class="form-label badge text-bg-dark" style="font-size: 18px">Choose company's
+                        charasteristics:</label>
+                    <select id="chars" name="chars" class="form-select selectpicker" multiple>
+                        {% for char in ["address1", "city", "state", "country", "phone", "website", "industry", "sector",
+            "companyOfficers", "previousClose", "open", "dayLow", "dayHigh", "volume", "averageVolume",
+            "marketCap", "fiftyTwoWeekLow", "fiftyTwoWeekHigh", "currentPrice"] %}
+                            <option value="{{ char }}">{{ char }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <br>
+            <br>
+            <button class="btn btn-dark bottom-submit" type="submit" tabindex="17">Search</button>
+        </form>
+        {% if show_details %}
+            <br>
+            <br>
+            <div class="row justify-content-evenly">
+                {% for i in range(company_chars | length) %}
+                    <div class="col-md-4 text-bg-secondary p-3" style="border: 3px solid white;">
+                        <h4>{{ chars[i] }}: {{ company_chars[i] }}</h4>
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        {% endif %}
+    </div>
+{% endblock %}
